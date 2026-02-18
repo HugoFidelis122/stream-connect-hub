@@ -1,4 +1,9 @@
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 export default function Sports() {
+  const { ref, isInView } = useScrollAnimation();
+
   const sports = [
     { emoji: "⚽", name: "Futebol" },
     { emoji: "🏀", name: "NBA" },
@@ -9,7 +14,7 @@ export default function Sports() {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <div className="relative bg-card border border-border rounded-3xl p-8 sm:p-12 overflow-hidden">
           {/* Red glow background */}
@@ -19,7 +24,12 @@ export default function Sports() {
 
           <div className="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
             {/* Visual */}
-            <div className="flex justify-center order-last lg:order-first">
+            <motion.div
+              className="flex justify-center order-last lg:order-first"
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <div className="relative w-72 h-72 rounded-3xl bg-gradient-to-br from-primary/20 to-orange-500/20 border border-primary/20 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-7xl mb-4">⚽</div>
@@ -27,9 +37,13 @@ export default function Sports() {
                   <div className="text-sm text-muted-foreground mt-2">Ao vivo, sem mensalidades extras</div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               <div className="inline-block bg-primary/20 text-primary text-sm font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
                 Esportes & Jogos
               </div>
@@ -44,17 +58,20 @@ export default function Sports() {
               </p>
 
               <div className="grid grid-cols-3 gap-3">
-                {sports.map((sport) => (
-                  <div
+                {sports.map((sport, i) => (
+                  <motion.div
                     key={sport.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.08 }}
                     className="flex flex-col items-center gap-2 bg-secondary rounded-xl p-3 text-center"
                   >
                     <span className="text-2xl">{sport.emoji}</span>
                     <span className="text-xs font-medium text-foreground">{sport.name}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

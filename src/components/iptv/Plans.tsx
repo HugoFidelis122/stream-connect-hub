@@ -1,4 +1,6 @@
 import { Check, Zap, Crown } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const WA_LINK = "https://api.whatsapp.com/send/?phone=5561984016006&text=Ol%C3%A1%2C+eu+gostaria+de+saber+mais+sobre+o+aplicativo+UniTV+Free&type=phone_number&app_absent=0";
 
@@ -53,11 +55,18 @@ const plans = [
 ];
 
 export default function Plans() {
+  const { ref, isInView } = useScrollAnimation();
+
   return (
-    <section id="planos" className="section-alt py-20 px-4 sm:px-6 lg:px-8">
+    <section id="planos" className="section-alt py-20 px-4 sm:px-6 lg:px-8" ref={ref}>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-14">
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="inline-block bg-primary/20 text-primary text-sm font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
             Planos e Preços
           </div>
@@ -68,10 +77,15 @@ export default function Plans() {
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Sem fidelidade. Sem taxas extras. Pagamento único e acesso para sempre.
           </p>
-        </div>
+        </motion.div>
 
         {/* Process steps */}
-        <div className="grid grid-cols-3 gap-4 mb-14 max-w-2xl mx-auto">
+        <motion.div
+          className="grid grid-cols-3 gap-4 mb-14 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {[
             { step: "1", label: "ESCOLHA", desc: "Selecione o plano ideal" },
             { step: "2", label: "PAGUE", desc: "Pagamento seguro via PIX" },
@@ -85,13 +99,16 @@ export default function Plans() {
               <div className="text-xs text-muted-foreground mt-0.5">{s.desc}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Plan Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-          {plans.map((plan) => (
-            <div
+          {plans.map((plan, i) => (
+            <motion.div
               key={plan.subtitle}
+              initial={{ opacity: 0, y: 50 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.15 }}
               className={`relative rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${
                 plan.highlight
                   ? "border-2 border-primary shadow-2xl glow-red"
@@ -162,12 +179,17 @@ export default function Plans() {
                   CONTRATAR VIA WHATSAPP
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Guarantee */}
-        <div className="mt-10 text-center bg-card border border-border rounded-2xl p-6 max-w-2xl mx-auto">
+        <motion.div
+          className="mt-10 text-center bg-card border border-border rounded-2xl p-6 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
           <div className="text-3xl mb-3">🛡️</div>
           <h3 className="font-black text-foreground text-lg mb-2">Garantia Incondicional de 7 dias</h3>
           <p className="text-muted-foreground text-sm">
@@ -175,7 +197,7 @@ export default function Plans() {
             Confiamos tanto na qualidade que oferecemos{" "}
             <strong className="text-foreground">garantia incondicional!</strong>
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
