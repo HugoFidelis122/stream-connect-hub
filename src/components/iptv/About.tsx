@@ -1,6 +1,19 @@
 import { Tv, Smartphone, Monitor, Wifi, Shield, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const, delay },
+  }),
+};
 
 export default function About() {
+  const { ref, isInView } = useScrollAnimation();
+
   const devices = [
     { icon: Tv, label: "Smart TV" },
     { icon: Smartphone, label: "Celular / Tablet" },
@@ -14,11 +27,15 @@ export default function About() {
   ];
 
   return (
-    <section className="section-alt py-20 px-4 sm:px-6 lg:px-8">
+    <section className="section-alt py-20 px-4 sm:px-6 lg:px-8" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text */}
-          <div>
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
             <div className="inline-block bg-primary/20 text-primary text-sm font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
               Sobre o serviço
             </div>
@@ -39,19 +56,29 @@ export default function About() {
               Mais de <strong className="text-foreground">50 mil clientes</strong> já aprovaram!
             </p>
 
-            {highlights.map((h) => (
-              <div key={h.text} className="flex items-center gap-3 mb-3">
+            {highlights.map((h, i) => (
+              <motion.div
+                key={h.text}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                className="flex items-center gap-3 mb-3"
+              >
                 <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                   <h.icon className="w-4 h-4 text-primary" />
                 </div>
                 <span className="text-foreground font-medium">{h.text}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Devices */}
-          <div className="grid grid-cols-1 gap-4">
-            {/* App preview box */}
+          <motion.div
+            className="grid grid-cols-1 gap-4"
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          >
             <div className="relative bg-card border border-border rounded-2xl p-8 text-center overflow-hidden">
               <div className="absolute inset-0 opacity-10" style={{
                 background: "radial-gradient(ellipse at center, hsl(0 85% 50%) 0%, transparent 70%)"
@@ -75,7 +102,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Compatible devices label */}
             <div className="bg-card border border-border rounded-2xl p-6">
               <h4 className="font-bold text-foreground mb-4 text-center">Aparelhos Compatíveis</h4>
               <div className="grid grid-cols-2 gap-2 text-sm text-muted-foreground">
@@ -87,7 +113,7 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
