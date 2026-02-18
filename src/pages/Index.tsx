@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/iptv/Navbar";
+import Hero from "@/components/iptv/Hero";
+import About from "@/components/iptv/About";
+import Benefits from "@/components/iptv/Benefits";
+import Kids from "@/components/iptv/Kids";
+import Sports from "@/components/iptv/Sports";
+import Plans from "@/components/iptv/Plans";
+import FAQ from "@/components/iptv/FAQ";
+import CTA from "@/components/iptv/CTA";
+import Footer from "@/components/iptv/Footer";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <Hero />
+      <About />
+      <Benefits />
+      <Kids />
+      <Sports />
+      <Plans />
+      <FAQ />
+      <CTA />
+      <Footer />
     </div>
   );
 };
