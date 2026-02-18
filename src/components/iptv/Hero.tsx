@@ -1,3 +1,5 @@
+import interfaceImg from "@/assets/interface-unitv.webp";
+
 const WA_LINK = "https://api.whatsapp.com/send/?phone=5561984016006&text=Ol%C3%A1%2C+eu+gostaria+de+saber+mais+sobre+o+aplicativo+UniTV+Free&type=phone_number&app_absent=0";
 
 export default function Hero() {
@@ -80,16 +82,16 @@ export default function Hero() {
         </div>
 
         {/* App Interface Preview */}
-        <div className="mt-14 relative max-w-4xl mx-auto">
+        <div className="mt-14 relative max-w-4xl mx-auto pb-6">
           <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl glow-red">
             <img
-              src="/interface-unitv.webp"
+              src={interfaceImg}
               alt="Interface do UniTV Free"
               className="w-full h-auto"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           </div>
-          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-primary/90 text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary/90 text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap">
             Interface real do aplicativo
           </div>
         </div>
