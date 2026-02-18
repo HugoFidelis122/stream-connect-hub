@@ -65,7 +65,7 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8 sm:gap-16">
+        <div className="mt-12 flex flex-wrap justify-center gap-8 sm:gap-16">
           {[
             { value: "+50mil", label: "Clientes satisfeitos" },
             { value: "4K", label: "Qualidade máxima" },
@@ -77,6 +77,21 @@ export default function Hero() {
               <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
             </div>
           ))}
+        </div>
+
+        {/* App Interface Preview */}
+        <div className="mt-14 relative max-w-4xl mx-auto">
+          <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-2xl glow-red">
+            <img
+              src="/interface-unitv.webp"
+              alt="Interface do UniTV Free"
+              className="w-full h-auto"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          </div>
+          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-primary/90 text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest whitespace-nowrap">
+            Interface real do aplicativo
+          </div>
         </div>
       </div>
 

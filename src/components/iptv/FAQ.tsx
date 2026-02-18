@@ -31,8 +31,8 @@ const faqs = [
     a: "A ativação é simples e rápida. Após a compra via WhatsApp, você recebe as instruções para liberar o acesso imediatamente, sem burocracia.",
   },
   {
-    q: "Como funciona o teste grátis?",
-    a: "Entre em contato via WhatsApp e solicite seu teste grátis. Nossa equipe enviará as credenciais de acesso para você experimentar antes de adquirir.",
+    q: "O UniTV Free tem garantia?",
+    a: "Sim! Oferecemos 7 dias de garantia incondicional. Se por qualquer motivo você não ficar satisfeito, devolvemos o seu dinheiro sem burocracia, conforme o Código de Defesa do Consumidor (Art. 49).",
   },
   {
     q: "Quais formas de pagamento?",
